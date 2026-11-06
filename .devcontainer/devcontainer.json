@@ -1,0 +1,6 @@
+{
+  "name": "find-think",
+  "image": "mcr.microsoft.com/devcontainers/java:17",
+  "postCreateCommand": "bash setup.sh",
+  "customizations": { "vscode": { "extensions": ["fwcd.kotlin"] } }
+}
