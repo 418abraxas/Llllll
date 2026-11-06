@@ -43,7 +43,7 @@ class ThinkView(
     }
 
     private fun proposal(act: Action, index: List<AppEntry>) {
-        val (label, run): Pair<String, (() -> Unit)?> = when (act) {
+        val pair: Pair<String, (() -> Unit)?> = when (act) {
             is Action.OpenApp -> {
                 val e = Index.resolve(index, act.name)
                 if (e == null) "App not found: ${act.name}" to null
@@ -53,6 +53,7 @@ class ThinkView(
             is Action.SetTimer -> "Set timer: ${act.seconds}s ${act.label}".trim() to { AiActions.setTimer(a, act.seconds, act.label) }
             is Action.OpenUrl -> "Open ${act.url}" to { AiActions.openUrl(a, act.url) }
         }
+        val (label, run) = pair
         val b = Button(a)
         b.text = label
         b.isAllCaps = false
